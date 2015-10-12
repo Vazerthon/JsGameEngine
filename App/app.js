@@ -1,8 +1,9 @@
 'use strict'
-var eng = engine();
+var engine = factories.engine();
 
 var bla = () => { console.log('I am bla!'); }
-eng.subscribe(bla);
-console.log(eng.getSubscribers());
+engine.start();
 
-eng.start();
+setTimeout(() => {
+  engine.subscribe(bla);
+}, 1000);

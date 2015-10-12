@@ -1,6 +1,7 @@
 'use strict'
 
-const subscribable = () => {
+var factories = factories || {};
+factories.subscribable = () => {
   let subscribers = [];
 
   let subscribe = (func) => {
