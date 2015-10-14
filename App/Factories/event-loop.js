@@ -1,35 +1,20 @@
 'use strict'
 
 var factories = factories || {};
-factories.eventLoop = (subscribable) => {
-  if (!subscribable) {
-    throw 'eventLoop requires subscribable';
-  }
-  var running = false;
-
-  let loop = () => {
-    while (running) {
-      console.log('loop started - ' + Date());
-
-      let subs = subscribable.getSubscribers();
-      console.log(subs.length);
-      
-      subs.forEach((sub) => {
-        console.log(sub);
-      });
-
-      console.log('loop ended - ' + Date());
-    };
-  };
+factories.eventLoop = (state) => {
+  let interval = undefined;
+  let fps = 60;
 
   let start = () => {
-    running = true;
-    loop();
+    interval = setInterval(() => {
+      state.subscribers.forEach((sub) => {
+        sub();
+      });
+    }, 1000 / fps);
   };
 
   let stop = () => {
-    running = false;
-    loop();
+    clearInterval(interval);
   };
 
   return {

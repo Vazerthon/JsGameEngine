@@ -1,15 +1,13 @@
 'use strict'
 
 var factories = factories || {};
-factories.subscribable = () => {
-  let subscribers = [];
-
+factories.subscribable = (state) => {
   let subscribe = (func) => {
-    subscribers.push(func);
+    state.subscribers.push(func);
   };
 
   let getSubscribers = () => {
-    return subscribers;
+    return state.subscribers;
   };
 
   return {

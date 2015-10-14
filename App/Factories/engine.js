@@ -2,15 +2,15 @@
 
 var factories = factories || {};
 factories.engine = () => {
-  let engine = {
-    running: false
+  let state = {
+    subscribers: []
   };
 
-  let subscribable = factories.subscribable();
-  let eventLoop = factories.eventLoop(subscribable);
-  
+  let subscribable = factories.subscribable(state);
+  let eventLoop = factories.eventLoop(state);
+
   return Object.assign(
-    engine,
+    {},
     subscribable,
     eventLoop
   );
