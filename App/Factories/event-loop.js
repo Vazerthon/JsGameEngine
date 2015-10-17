@@ -20,5 +20,5 @@ factories.eventLoop = (state) => {
   return {
     start: start,
     stop: stop
-  }
+  };
 };

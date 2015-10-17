@@ -13,5 +13,5 @@ factories.subscribable = (state) => {
   return {
     subscribe: subscribe,
     getSubscribers: getSubscribers
-  }
+  };
 };
