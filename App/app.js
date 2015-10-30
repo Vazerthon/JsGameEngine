@@ -1,25 +1,30 @@
 'use strict'
-var engine = factories.engine();
+let engine = factories.engine({
+  elementId: 'game',
+  width: 800,
+  height: 600,
+  background: '#000'
+});
 
-var loggerFactory = (message) => {
+let loggerFactory = (message) => {
   return () => {
     console.log(message);
   }
 }
 
-var start = () => {
+let start = () => {
   console.log('starting...');
   engine.start();
   console.log('started');
 };
 
-var stop = () => {
+let stop = () => {
   console.log('stopping...');
   engine.stop();
   console.log('stopped')
 };
 
-var sub = () => {
+let sub = () => {
   console.log('adding subscriber...');
   engine.subscribe(loggerFactory(Date()));
   console.log('done')

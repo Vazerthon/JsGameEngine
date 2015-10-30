@@ -1,14 +1,14 @@
 'use strict'
 
 var factories = factories || {};
-factories.engine = () => {
+factories.engine = (options) => {
   let state = {
     subscribers: []
   };
 
   let subscribable = factories.subscribable(state);
   let eventLoop = factories.eventLoop(state);
-  let canvas = factories.canvas(state);
+  let canvas = factories.canvas(state, options);
 
   return Object.assign(
     {},
