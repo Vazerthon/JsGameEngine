@@ -8,7 +8,7 @@ factories.engine = (options) => {
 
   let subscribable = factories.subscribable(state);
   let eventLoop = factories.eventLoop(state);
-  let canvas = factories.canvas(state, options);
+  let canvas = factories.canvas(state, options, subscribable);
 
   return Object.assign(
     {},

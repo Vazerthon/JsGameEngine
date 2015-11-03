@@ -1,9 +1,19 @@
 'use strict'
+let running = false;
+
 let engine = factories.engine({
   elementId: 'game',
   width: 800,
   height: 600,
-  background: '#000'
+  background: '#fff'
+});
+
+let circle = engine.addCircle({
+  x: 50,
+  y: 50,
+  r: 50,
+  sAngle: 0,
+  eAngle: 2 * Math.PI
 });
 
 let loggerFactory = (message) => {
@@ -13,15 +23,31 @@ let loggerFactory = (message) => {
 }
 
 let start = () => {
-  console.log('starting...');
   engine.start();
-  console.log('started');
+  running = true;
+  console.log('engine started');
 };
 
 let stop = () => {
-  console.log('stopping...');
   engine.stop();
-  console.log('stopped')
+  running = false;
+  console.log('engine stopped')
+};
+
+let move = (direction) => {
+  if (!running) {
+    console.log('Engine not running!');
+  }
+
+  if (direction === 'left') {
+    circle.setX(circle.getX() - 10);
+  } else if (direction === 'right') {
+    circle.setX(circle.getX() + 10);
+  } else if (direction === 'up') {
+    circle.setY(circle.getY() - 10);
+  } else if (direction === 'down') {
+    circle.setY(circle.getY() + 10);
+  }
 };
 
 let sub = () => {
