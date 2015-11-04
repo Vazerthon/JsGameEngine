@@ -2,10 +2,16 @@
 
 var factories = factories || {};
 factories.eventLoop = (state) => {
+  let started = false;
   let interval = undefined;
   let fps = 60;
 
   let start = () => {
+    if (started) {
+      return;
+    }
+
+    started = true;
     interval = setInterval(() => {
       state.subscribers.forEach((sub) => {
         sub();
@@ -15,6 +21,7 @@ factories.eventLoop = (state) => {
 
   let stop = () => {
     clearInterval(interval);
+    started = false;
   };
 
   return {
