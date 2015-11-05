@@ -4,6 +4,8 @@ var factories = factories || {};
 factories.eventLoop = (state) => {
   let started = false;
   let interval = undefined;
+  let startedDate = undefined;
+  let loggedTime = 0;
   let fps = 60;
 
   let start = () => {
@@ -12,6 +14,8 @@ factories.eventLoop = (state) => {
     }
 
     started = true;
+    startedDate = new Date();
+
     interval = setInterval(() => {
       state.subscribers.forEach((sub) => {
         sub();
@@ -21,11 +25,21 @@ factories.eventLoop = (state) => {
 
   let stop = () => {
     clearInterval(interval);
+    loggedTime = getRunningTimeInSeconds();
     started = false;
+  };
+
+  let getRunningTimeInSeconds = () => {
+    let dateDiff = new Date(new Date() - startedDate);
+    let wholeMinutesAsSeconds = dateDiff.getMinutes() * 60;
+    let secondsOfCurrentMinute = dateDiff.getSeconds();
+
+    return wholeMinutesAsSeconds + secondsOfCurrentMinute + loggedTime;
   };
 
   return {
     start,
-    stop
+    stop,
+    getRunningTimeInSeconds
   };
 };
