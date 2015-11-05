@@ -1,5 +1,5 @@
 'use strict';
-let engine = factories.engine({});
+let engine = factories.engine({fps: 1});
 
 //-----------------------------------------------
 let updateGameTime = () => {

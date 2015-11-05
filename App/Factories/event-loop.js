@@ -1,12 +1,12 @@
 'use strict'
 
 var factories = factories || {};
-factories.eventLoop = (state) => {
+factories.eventLoop = (state, options) => {
   let started = false;
   let interval = undefined;
   let startedDate = undefined;
   let loggedTime = 0;
-  let fps = 60;
+  let fps = options.fps;
 
   let start = () => {
     if (started) {
