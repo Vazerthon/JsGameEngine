@@ -1,12 +1,16 @@
 'use strict'
 let running = false;
 
-let engine = factories.engine({
-  elementId: 'game',
-  width: 800,
-  height: 600,
-  background: '#fff'
-});
+let engineOpts = {
+    canvas: {
+    elementId: 'game',
+    width: 800,
+    height: 600,
+    background: '#fff'
+  }
+};
+
+let engine = factories.engine(engineOpts);
 
 let circle = engine.addCircle({
   x: 50,
