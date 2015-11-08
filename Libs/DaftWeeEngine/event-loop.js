@@ -1,7 +1,7 @@
 'use strict'
 
-var factories = factories || {};
-factories.eventLoop = (state, options) => {
+var daftWeeEngine = daftWeeEngine || {};
+daftWeeEngine.eventLoop = (state, options) => {
   let started = false;
   let interval = undefined;
   let startedDate = undefined;

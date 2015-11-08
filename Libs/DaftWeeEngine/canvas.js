@@ -1,7 +1,7 @@
 'use strict'
 
-var factories = factories || {};
-factories.canvas = (state, options, subscribable) => {
+var daftWeeEngine = daftWeeEngine || {};
+daftWeeEngine.canvas = (state, options, subscribable) => {
   let gameCanvas = undefined;
   let context = undefined;
   let drawables = [];

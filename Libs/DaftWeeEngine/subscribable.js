@@ -1,7 +1,7 @@
 'use strict'
 
-var factories = factories || {};
-factories.subscribable = (state) => {
+var daftWeeEngine = daftWeeEngine || {};
+daftWeeEngine.subscribable = (state) => {
   let subscribe = (func) => {
     state.subscribers.push(func);
   };
