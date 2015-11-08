@@ -45,31 +45,19 @@ daftWeeEngine.canvas = (state, options, subscribable) => {
     subscribable.subscribe(redraw);
   };
 
-  let addCircle = (opts) => {
-    let x = opts.x;
-    let y = opts.y;
+  let addDrawable = (drawable) => {
+    if (!drawable.hasOwnProperty('draw')) {
+      throw 'Drawables must contain a draw() function';
+    }
 
-    let getX = () => { return x; };
-    let getY = () => { return y; };
-    let setX = newX => { x = newX; };
-    let setY = newY => { y = newY; };
-
-    let circle = {
-      getX: getX,
-      getY: getY,
-      setX: setX,
-      setY: setY,
-      draw: () => {
-        context.beginPath();
-        context.arc(getX(),getY(),opts.r,opts.sAngle,opts.eAngle);
-        context.fill();
-      }
-    };
-
-    drawables.push(circle);
-    redraw();
-    return circle;
+    drawables.push(drawable);
   };
+
+  //todo: remove drawable
+
+  let getDrawingContext = () => {
+    return context;
+  }
 
   let init = () => {
     createCanvas();
@@ -77,6 +65,7 @@ daftWeeEngine.canvas = (state, options, subscribable) => {
   }();
 
   return {
-    addCircle
+    getDrawingContext,
+    addDrawable
   };
 };

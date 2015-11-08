@@ -10,14 +10,16 @@ daftWeeEngine.create = (options) => {
   let eventLoop = daftWeeEngine.eventLoop(state, options);
 
   let canvas = undefined;
+  let circle = undefined;
   if (options.hasOwnProperty('canvas')) {
     canvas = daftWeeEngine.canvas(state, options.canvas, subscribable);
+    circle = daftWeeEngine.circle(canvas);
   }
 
   return Object.assign(
     {},
     subscribable,
     eventLoop,
-    canvas
+    circle
   );
 };
