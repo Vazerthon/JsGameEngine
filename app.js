@@ -23,7 +23,7 @@ let start = () => {
 
 let c = engine.drawCircle({x: 10, y: 10, r: 10});
 
-let distance =20;
+let distance = 20;
 window.addEventListener('keydown', (e) => {
   if (e.keyIdentifier === 'Left' ||
       e.keyIdentifier === 'Right' ||

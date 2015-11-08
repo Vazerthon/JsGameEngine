@@ -20,13 +20,20 @@ daftWeeEngine.circle = (canvas) => {
       }
     };
 
+    let draw = () => {
+      context.beginPath();
+      context.arc(x, y, r, 0, 2 * Math.PI);
+      context.fill();
+    };
+
+    let coords = () => {
+      return {x, y};
+    };
+
     let circle = {
-      move: move,
-      draw: () => {
-        context.beginPath();
-        context.arc(x, y, r, 0, 2 * Math.PI);
-        context.fill();
-      }
+      move,
+      coords,
+      draw
     };
 
     canvas.addDrawable(circle);
